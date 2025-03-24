@@ -1,8 +1,8 @@
 class Oli < Formula
   desc "A simple, blazingly fast TUI based AI coding assistant"
   homepage "https://github.com/amrit110/oli"
-  url "https://github.com/amrit110/oli/archive/refs/tags/v0.1.1.tar.gz"
-  sha256 "7f9e42d9dd67891707258f2eb087484a2bc1cc69a25388d9791397f76dacc427"
+  url "https://github.com/amrit110/oli/archive/refs/tags/v0.1.2.tar.gz"
+  sha256 "7894bb73af701ef7e8b2cc6cd121a62d02ac83b8f1a57319dac6f745d23f5f12"
   license "Apache-2.0"
 
   depends_on "rust" => :build
