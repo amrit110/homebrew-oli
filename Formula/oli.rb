@@ -7,6 +7,7 @@ class Oli < Formula
 
   depends_on "rust" => :build
   depends_on "node" => :build
+  depends_on "node" => :recommended
 
   def install
     # Build Rust backend
@@ -28,6 +29,9 @@ class Oli < Formula
     cp "target/release/oli-server", libexec_dir
     cp_r "ui/dist", "#{libexec_dir}/ui"
     
+    # Install tsx as a runtime dependency
+    system "npm", "install", "--prefix", libexec_dir, "tsx@4.19.3"
+    
     # Create wrapper script
     (bin/"oli").write <<~EOS
       #!/bin/bash
@@ -38,7 +42,7 @@ class Oli < Formula
       
       # Start the UI
       cd "#{libexec_dir}"
-      node --import tsx ui/cli.js "$@"
+      NODE_PATH="#{libexec_dir}/node_modules" node --import "#{libexec_dir}/node_modules/tsx" ui/cli.js "$@"
       
       # Kill the server when the UI exits
       kill $SERVER_PID
